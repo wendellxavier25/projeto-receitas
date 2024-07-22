@@ -7,6 +7,10 @@ class Category(models.Model):
     
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categorys'
 
 class Recipe(models.Model):
     title = models.CharField(max_length=50)
@@ -22,5 +26,12 @@ class Recipe(models.Model):
     update_at = models.DateField(auto_now=True)
     is_published = models.BooleanField(default=False)
     cover = models.ImageField(upload_to='recipes/covers/%Y/%m/%d/')
-    Category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        verbose_name = 'Recipe'
+        verbose_name_plural = 'Recipes'
