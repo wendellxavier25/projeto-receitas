@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Recipe
 from django.http import Http404
 
@@ -16,7 +16,6 @@ def category(request, category_id):
 
 
 def recipe(request, id):
-    recipe = Recipe.objects.filter(id=id, is_published=True).order_by('-id').first()
-    
+    recipe = get_object_or_404(Recipe, id=id, is_published=True)
     
     return render(request,'recipes/pages/recipe-view.html', {'is_detail_page': True, 'recipe': recipe,})
