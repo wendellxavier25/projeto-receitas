@@ -18,3 +18,12 @@ def recipe(request, id):
     recipe = get_object_or_404(Recipe, id=id, is_published=True)
     
     return render(request,'recipes/pages/recipe-view.html', {'is_detail_page': True, 'recipe': recipe,})
+
+
+def search(request):
+    search_term = request.GET.get('q')
+    
+    if not search_term:
+        raise Http404()
+    
+    return render(request, 'recipes/pages/search.html')

@@ -28,3 +28,12 @@ class RecipeViewsTest(TestCase):
     def test_recipe_home_template_shows_no_recipes_found_if_no_recipes(self):
         reponse = self.client.get(reverse('recipes:home'))
         self.assertIn('<h1>No recipes found here</h1>', reponse.content.decode('utf-8'))
+    
+    def test_recipe_search_uses_correct_view_function(self):
+        resolved = reverse(reverse('recipes:search'))
+        self.assertIs(resolved.func, views.search)
+        
+    def test_recipe_search_raises_404_if_no_search_term(self):
+        reponse = self.client.get(reverse('recipes:home'))
+        self.assertEqual(reponse.status_code, 404)
+        
