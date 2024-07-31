@@ -1,5 +1,5 @@
 from django.test import TestCase
-from django.urls import reverse
+from django.urls import reverse, resolve
 from recipes import views
 
 class RecipeCategoryViewsTest(TestCase):
