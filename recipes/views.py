@@ -1,9 +1,10 @@
+import os
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 from .models import Recipe
 from django.http import Http404
 from django.db.models import Q
 from utils.pagination import make_pagination
-import os
+
 
 PER_PAGE = int(os.environ.get('PER_PAGE', 6))
 
